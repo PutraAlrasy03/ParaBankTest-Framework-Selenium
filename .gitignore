@@ -1,0 +1,14 @@
+# Maven
+target/
+
+# Eclipse
+.settings/
+.project
+.classpath
+
+# TestNG
+test-output/
+
+# OS generated files
+.DS_Store
+Thumbs.db
