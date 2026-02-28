@@ -30,7 +30,7 @@ public class BankHybridTest {
         // Use a timestamp to generate a unique username every time the test runs
         String uniqueUsername = "user" + System.currentTimeMillis();
         
-        // Fill out the registration form
+        // Fill out the registration form here
         driver.findElement(By.id("customer.firstName")).sendKeys("John");
         driver.findElement(By.id("customer.lastName")).sendKeys("Doe");
         driver.findElement(By.id("customer.address.street")).sendKeys("123 Main St");
