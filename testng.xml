@@ -9,6 +9,7 @@
         <classes>
             <class name="com.bank.tests.HybridTests"/>
             <class name="com.bank.tests.LoginTests"/>
+            <class name="com.bank.tests.LoginApiTests"/>
         </classes>
     </test>
 
