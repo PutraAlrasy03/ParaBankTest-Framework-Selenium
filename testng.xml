@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ParaBank Portfolio Suite">
+    
+    <listeners>
+        <listener class-name="com.bank.utils.ReportingListener" />
+    </listeners>
+
+    <test name="UI and API Regression Tests">
+        <classes>
+            <class name="com.bank.tests.HybridTests"/>
+            <class name="com.bank.tests.LoginTests"/>
+        </classes>
+    </test>
+
+</suite>
