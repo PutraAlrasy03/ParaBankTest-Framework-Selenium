@@ -77,3 +77,17 @@ After running the test suite, a beautiful HTML dashboard is automatically genera
 2. Right-click the newly generated `ExtentReport_YYYY.MM.DD.HH.MM.SS.html` file.
 3. Select **Open With > Web Browser** (or Reveal in File Explorer and double-click).
 
+## 🗺️ Future Roadmap (Next Steps)
+
+To continue scaling this framework to enterprise standards, the following enhancements are planned:
+
+### ⚙️ Framework Architecture Enhancements
+1. **External Data Management:** Migrate hardcoded `@DataProvider` arrays to read dynamically from external `.xlsx` (Excel) or `.json` files using Apache POI/Jackson.
+2. **Behavior-Driven Development (BDD):** Integrate Cucumber to write test scenarios in plain English (Gherkin syntax) to improve collaboration with non-technical stakeholders.
+3. **CI/CD Pipeline Integration:** Configure GitHub Actions to automatically trigger the `mvn clean test` execution sequence on every repository push or pull request.
+
+### 🧪 Upcoming Test Coverage (Draft)
+1. **Database Validation (JDBC):** Connect directly to the backend database to verify that UI and API transactions (like fund transfers) are accurately committing to the database.
+2. **Parallel Execution:** Configure TestNG and Maven Surefire to run UI and API test suites concurrently across multiple threads, drastically reducing execution time.
+3. **Cross-Browser Matrix:** Enhance `BaseTest.java` to support dynamic multi-browser testing (Chrome, Firefox, Edge, Headless) driven by Maven command-line parameters.
+4. **Security/Negative Testing Expansion:** Expand API DataProviders to inject common OWASP vulnerabilities (e.g., basic SQL injection and XSS payloads) to verify ParaBank correctly rejects malicious inputs.
