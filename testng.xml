@@ -10,6 +10,7 @@
             <class name="com.bank.tests.HybridTests"/>
             <class name="com.bank.tests.LoginTests"/>
             <class name="com.bank.tests.LoginApiTests"/>
+            <class name="com.bank.tests.FinancialOperationsTests"/>
         </classes>
     </test>
 
