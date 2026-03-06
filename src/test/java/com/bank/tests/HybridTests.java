@@ -6,16 +6,16 @@ import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
-import com.bank.base.BaseTest;
+import com.bank.base.CommonMethods;
 import com.bank.pages.RegistrationPage;
 
-// "extends BaseTest" gives us access to the WebDriver and setup/teardown logic automatically
-public class HybridTests extends BaseTest {
+// "extends CommonMethods" gives us access to the WebDriver and setup/teardown logic automatically
+public class HybridTests extends CommonMethods {
 
     @Test(priority = 1)
     public void testUI_UserRegistration() {
-        // 1. Initialize the Page Object
-        RegistrationPage regPage = new RegistrationPage(driver);
+        // 1. Initialize the Page Object (no longer needs WebDriver parameter)
+        RegistrationPage regPage = new RegistrationPage();
         
         String uniqueUsername = "user" + System.currentTimeMillis();
 

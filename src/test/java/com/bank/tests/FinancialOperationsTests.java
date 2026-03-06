@@ -4,12 +4,12 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.bank.base.BaseTest;
+import com.bank.base.CommonMethods;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
-public class FinancialOperationsTests extends BaseTest {
+public class FinancialOperationsTests extends CommonMethods {
 
     // These variables will hold our REAL account numbers once the tests start running!
     private String sourceAccount = "";

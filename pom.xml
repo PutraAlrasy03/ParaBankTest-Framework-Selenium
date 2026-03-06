@@ -46,6 +46,13 @@
         <version>5.1.1</version>
     </dependency>
 
+    <!-- Appium for Mobile Testing -->
+    <dependency>
+        <groupId>io.appium</groupId>
+        <artifactId>java-client</artifactId>
+        <version>9.2.0</version>
+    </dependency>
+
     <!-- Cucumber Dependencies -->
     <dependency>
         <groupId>io.cucumber</groupId>

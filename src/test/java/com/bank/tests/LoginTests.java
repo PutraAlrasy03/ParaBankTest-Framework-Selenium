@@ -4,26 +4,22 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.bank.base.BaseTest;
+import com.bank.base.CommonMethods;
 import com.bank.pages.AccountOverviewPage;
 import com.bank.pages.LoginPage;
 
-public class LoginTests extends BaseTest {
+public class LoginTests extends CommonMethods {
 
     // ==========================================
     // TEST 1: The "Happy Path" (Valid Login)
     // ==========================================
     @Test(priority = 1, description = "Verify successful login with valid credentials")
     public void testUI_ValidLogin() {
-        driver.get("https://parabank.parasoft.com/parabank/index.htm");
+        // Use the reusable performStandardLogin method
+        AccountOverviewPage overviewPage = performStandardLogin("john", "demo");
         
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("john", "demo"); // Using ParaBank's default valid account
-
-        AccountOverviewPage overviewPage = new AccountOverviewPage(driver);
-        Assert.assertTrue(overviewPage.isPageLoaded(), "Login failed! Account Overview page was not displayed.");
-        
-        overviewPage.clickLogout(); // Clean up by logging out
+        // Clean up by logging out
+        overviewPage.clickLogout();
     }
 
     // ==========================================
@@ -43,9 +39,11 @@ public class LoginTests extends BaseTest {
     // ==========================================
     @Test(priority = 2, dataProvider = "invalidLoginData", description = "Verify login fails with various invalid inputs")
     public void testUI_NegativeLogins(String username, String password, String expectedErrorMessage) {
+        // Navigate to ParaBank URL
+        driver.get().get("https://parabank.parasoft.com/parabank/index.htm");
         
-        driver.get("https://parabank.parasoft.com/parabank/index.htm");
-        LoginPage loginPage = new LoginPage(driver);
+        // Create LoginPage (no longer needs WebDriver parameter)
+        LoginPage loginPage = new LoginPage();
 
         // Perform login using the data from the DataProvider
         loginPage.login(username, password);

@@ -9,14 +9,15 @@ import io.restassured.RestAssured;
 
 public class BaseTest {
     
-    // Protected means test classes that extend BaseTest can use this driver
-    protected WebDriver driver;
+    // ThreadLocal ensures each test thread gets its own WebDriver instance for parallel execution
+    public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     @BeforeMethod
     public void setup() {
-        // 1. Setup UI (Selenium)
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        // 1. Setup UI (Selenium) - Create WebDriver instance for this thread
+        WebDriver webDriver = new ChromeDriver();
+        webDriver.manage().window().maximize();
+        driver.set(webDriver);
 
         // 2. Setup API (RestAssured)
         RestAssured.baseURI = "https://parabank.parasoft.com/parabank";
@@ -24,8 +25,11 @@ public class BaseTest {
 
     @AfterMethod
     public void teardown() {
-        if (driver != null) {
-            driver.quit(); // Closes the browser after EVERY test
+        // Clean up WebDriver and remove ThreadLocal reference
+        WebDriver webDriver = driver.get();
+        if (webDriver != null) {
+            webDriver.quit(); // Closes the browser after EVERY test
+            driver.remove(); // Critical: Remove ThreadLocal reference to prevent memory leaks
         }
     }
 }
