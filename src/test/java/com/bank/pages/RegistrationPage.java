@@ -6,7 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.bank.base.BaseTest;
 
-public class RegistrationPage extends BaseTest {
+public class RegistrationPage extends BasePage {
     
     // Mobile-compatible locators using PageFactory
     @FindBy(id = "customer.firstName")
@@ -62,60 +62,40 @@ public class RegistrationPage extends BaseTest {
 
     // Constructor - initialize PageFactory
     public RegistrationPage() {
+        super(BaseTest.driver.get());
         // Initialize PageFactory with ThreadLocal WebDriver
-        PageFactory.initElements(driver.get(), this);
+        PageFactory.initElements(driver, this);
     }
 
     // Page Actions
     public void navigateToRegistrationPage() {
-        driver.get().get("https://parabank.parasoft.com/parabank/register.htm");
+        driver.get("https://parabank.parasoft.com/parabank/register.htm");
     }
 
     public void fillRegistrationForm(String firstName, String lastName, String username, String password) {
-        firstNameInput.clear();
-        firstNameInput.sendKeys(firstName);
-        
-        lastNameInput.clear();
-        lastNameInput.sendKeys(lastName);
-        
-        streetInput.clear();
-        streetInput.sendKeys("123 Main St");
-        
-        cityInput.clear();
-        cityInput.sendKeys("Tech City");
-        
-        stateInput.clear();
-        stateInput.sendKeys("CA");
-        
-        zipInput.clear();
-        zipInput.sendKeys("90210");
-        
-        phoneInput.clear();
-        phoneInput.sendKeys("555-1234");
-        
-        ssnInput.clear();
-        ssnInput.sendKeys("000-00-0000");
-        
-        usernameInput.clear();
-        usernameInput.sendKeys(username);
-        
-        passwordInput.clear();
-        passwordInput.sendKeys(password);
-        
-        confirmPasswordInput.clear();
-        confirmPasswordInput.sendKeys(password);
+        safeType(firstNameInput, firstName);
+        safeType(lastNameInput, lastName);
+        safeType(streetInput, "123 Main St");
+        safeType(cityInput, "Tech City");
+        safeType(stateInput, "CA");
+        safeType(zipInput, "90210");
+        safeType(phoneInput, "555-1234");
+        safeType(ssnInput, "000-00-0000");
+        safeType(usernameInput, username);
+        safeType(passwordInput, password);
+        safeType(confirmPasswordInput, password);
     }
 
     public void clickRegister() {
-        registerButton.click();
+        safeClick(registerButton);
     }
 
     public String getSuccessMessageText() {
-        return successMessage.getText();
+        return safeGetText(successMessage);
     }
     
     public String getRegistrationTitle() {
-        return registrationTitle.getText();
+        return safeGetText(registrationTitle);
     }
     
     public boolean isRegistrationFormVisible() {
@@ -123,48 +103,27 @@ public class RegistrationPage extends BaseTest {
     }
     
     public void navigateToHome() {
-        homeLink.click();
+        safeClick(homeLink);
     }
     
     public void navigateToAboutUs() {
-        aboutUsLink.click();
+        safeClick(aboutUsLink);
     }
     
     // Mobile-specific methods
     public void fillRegistrationFormMobile(String firstName, String lastName, String username, String password) {
-        // Mobile-friendly form filling with clear and sendKeys
-        firstNameInput.clear();
-        firstNameInput.sendKeys(firstName);
-        
-        lastNameInput.clear();
-        lastNameInput.sendKeys(lastName);
-        
-        streetInput.clear();
-        streetInput.sendKeys("123 Main St");
-        
-        cityInput.clear();
-        cityInput.sendKeys("Tech City");
-        
-        stateInput.clear();
-        stateInput.sendKeys("CA");
-        
-        zipInput.clear();
-        zipInput.sendKeys("90210");
-        
-        phoneInput.clear();
-        phoneInput.sendKeys("555-1234");
-        
-        ssnInput.clear();
-        ssnInput.sendKeys("000-00-0000");
-        
-        usernameInput.clear();
-        usernameInput.sendKeys(username);
-        
-        passwordInput.clear();
-        passwordInput.sendKeys(password);
-        
-        confirmPasswordInput.clear();
-        confirmPasswordInput.sendKeys(password);
+        // Mobile-friendly form filling with safeType
+        safeType(firstNameInput, firstName);
+        safeType(lastNameInput, lastName);
+        safeType(streetInput, "123 Main St");
+        safeType(cityInput, "Tech City");
+        safeType(stateInput, "CA");
+        safeType(zipInput, "90210");
+        safeType(phoneInput, "555-1234");
+        safeType(ssnInput, "000-00-0000");
+        safeType(usernameInput, username);
+        safeType(passwordInput, password);
+        safeType(confirmPasswordInput, password);
         
         // Submit form using Enter key (mobile-friendly)
         confirmPasswordInput.submit();
@@ -179,16 +138,16 @@ public class RegistrationPage extends BaseTest {
     }
     
     public void clearAllFields() {
-        firstNameInput.clear();
-        lastNameInput.clear();
-        streetInput.clear();
-        cityInput.clear();
-        stateInput.clear();
-        zipInput.clear();
-        phoneInput.clear();
-        ssnInput.clear();
-        usernameInput.clear();
-        passwordInput.clear();
-        confirmPasswordInput.clear();
+        safeType(firstNameInput, "");
+        safeType(lastNameInput, "");
+        safeType(streetInput, "");
+        safeType(cityInput, "");
+        safeType(stateInput, "");
+        safeType(zipInput, "");
+        safeType(phoneInput, "");
+        safeType(ssnInput, "");
+        safeType(usernameInput, "");
+        safeType(passwordInput, "");
+        safeType(confirmPasswordInput, "");
     }
 }

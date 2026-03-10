@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.bank.base.BaseTest;
 
-public class AccountOverviewPage extends BaseTest {
+public class AccountOverviewPage extends BasePage {
     
     // Mobile-compatible locators using PageFactory
     @FindBy(xpath = "//div[@id='showOverview']/h1[@class='title']")
@@ -44,23 +44,23 @@ public class AccountOverviewPage extends BaseTest {
 
     // Constructor - initialize PageFactory
     public AccountOverviewPage() {
+        super(BaseTest.driver.get());
         // Initialize PageFactory with ThreadLocal WebDriver
-        PageFactory.initElements(driver.get(), this);
+        PageFactory.initElements(driver, this);
     }
 
     // Actions
     public boolean isPageLoaded() {
         // Wait up to 10 seconds for the "Accounts Overview" header to appear
-        WebDriverWait wait = new WebDriverWait(driver.get(), Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOf(pageTitle)).isDisplayed();
     }
 
     public void clickLogout() {
-        logoutLink.click();
+        safeClick(logoutLink);
     }
     
     public String getPageTitle() {
-        return pageTitle.getText();
+        return safeGetText(pageTitle);
     }
     
     public List<WebElement> getAccountRows() {
@@ -72,19 +72,19 @@ public class AccountOverviewPage extends BaseTest {
     }
     
     public void navigateToTransferFunds() {
-        transferFundsLink.click();
+        safeClick(transferFundsLink);
     }
     
     public void navigateToBillPay() {
-        billPayLink.click();
+        safeClick(billPayLink);
     }
     
     public void navigateToUpdateContactInfo() {
-        updateContactInfoLink.click();
+        safeClick(updateContactInfoLink);
     }
     
     public void navigateToRequestLoan() {
-        requestLoanLink.click();
+        safeClick(requestLoanLink);
     }
     
     public List<WebElement> getLeftPanelLinks() {
@@ -102,7 +102,7 @@ public class AccountOverviewPage extends BaseTest {
     
     public void performQuickLogout() {
         // Mobile-friendly logout using keyboard
-        logoutLink.click();
+        safeClick(logoutLink);
     }
     
     public boolean isNavigationMenuVisible() {
